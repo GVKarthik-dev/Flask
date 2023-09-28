@@ -1,14 +1,25 @@
-from flask import Flask
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/<name>')
-def hello(name):
-    return f'<h1>hi ther {name}<h1>'
+@app.route('/', methods=['GET'])
+def squarenumber():
+	if request.method == 'GET':
 
-def hello():
-    return 'welcome'
-app.add_url_rule('/','welcome',hello)
+		if(request.args.get('num') == None):
+			return render_template('squarenum.html')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+		elif(request.args.get('num') == ''):
+			return "<html><body> <h1>Invalid number</h1></body></html>"
+		else:
+
+			number = request.args.get('num')
+			sq = int(number) * int(number)
+
+			return render_template('answer.html',
+								squareofnum=sq, num=number)
+
+
+
+if(__name__ == "__main__"):
+	app.run(debug=True)
