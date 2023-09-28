@@ -7,7 +7,7 @@ def squarenumber():
 	if request.method == 'GET':
 
 		if(request.args.get('num') == None):
-			return render_template('squarenum.html')
+			return render_template('home.html')
 
 		elif(request.args.get('num') == ''):
 			return "<html><body> <h1>Invalid number</h1></body></html>"
